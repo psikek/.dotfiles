@@ -1,0 +1,8 @@
+*.font: xft:tewi:size=8
+
+Xcursor.size: 16W
+URxvt.urgentOnBell: false
+URxvt.scrollBar: false
+URxvt.depth: 32
+URxvt.matcher.button: 1
+URxvt.perl-ext-common: default,matcher,vtwheel
