@@ -22,7 +22,6 @@
 │           ├── rc.conf
 │           ├── rifle.conf
 │           └── scope.sh
-├── readme.md
 ├── themes
 │   └── .local
 │       └── share
