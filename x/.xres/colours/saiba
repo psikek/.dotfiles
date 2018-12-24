@@ -37,7 +37,7 @@
 
 ! cyan
 *.color6:       #386e74
-*.color14:      #90c0bd
+*.color14:      #6699cc
 
 ! white
 *.color7:       #e0f2ec

@@ -1,4 +1,4 @@
-*.font: xft:tewi:size=8
+*.font: xft:terminus:size=12
 
 Xcursor.size: 16W
 URxvt.urgentOnBell: false

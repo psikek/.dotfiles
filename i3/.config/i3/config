@@ -8,7 +8,8 @@
 # Constants
 set $mod Mod4
 set $term exec urxvt
-set $launcher exec rofi -show run
+set $launcher exec rofi -show drun
+set $shlauncher exec rofi -show run
 set $lock exec $HOME/.bin/scripts/lock.sh
 set $wallpaper $HOME/Pictures/Wallpapers/tiles/SunLogo2.png
 
@@ -17,7 +18,7 @@ set $wallpaper $HOME/Pictures/Wallpapers/tiles/SunLogo2.png
 #gaps outer 0
 
 # Settings
-font pango: tewi, siji 8
+font pango: terminus, "Font Awesome 5 Brands Regular" 11
 hide_edge_borders both
 new_window pixel 1
 
@@ -25,7 +26,7 @@ new_window pixel 1
 exec_always --no-startup-id feh --bg-tile $wallpaper
 exec_always --no-startup-id xrdb .Xresources
 exec_always --no-startup-id pkill compton && compton --config .config/compton.conf
-exec_always --no-startup-id xset +fp $HOME/.fonts
+exec_always --no-startup-id xset +fp $HOME/.local/fonts
 exec_always --no-startup-id xset fp rehash
 #exec_always --no-startup-id $HOME/.config/polybar/launch.sh
 exec --no-startup-id nm-applet
@@ -56,6 +57,7 @@ for_window [title="^Steam Keyboard$"] floating enable
 # Start Binds
 bindsym $mod+Return $term
 bindsym $mod+d $launcher
+bindsym $mod+Shift+d $shlauncher
 bindsym $mod+Shift+q kill
 bindsym $mod+x $lock
 
@@ -64,8 +66,8 @@ bindsym $mod+Print exec scrot -e 'mv $f ~/Pictures/Screenshots/'
 bindsym $mod+Shift+Print exec scrot -u -e 'mv $f ~/Pictures/Screenshots/'
 
 # Audio Controls
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +5% #increase sound volume
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -5% #decrease sound volume
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume 0 +10% #increase sound volume
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume 0 -10% #decrease sound volume
 bindsym XF86AudioMute exec pactl set-sink-mute 0 toggle # mute sound
 
 # Sreen Brightness Controls
@@ -123,16 +125,16 @@ mode	"resize" {
 }
 
 # Workspaces
-set $ws1 ""
-set $ws2 ""
-set $ws3 ""
-set $ws4 ""
-set $ws5 ""
-set $ws6 ""
-set $ws7 ""
-set $ws8 ""
-set $ws9 ""
-set $ws10 ""
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
 
 # switch to workspace
 bindsym $mod+1 workspace $ws1
@@ -165,30 +167,32 @@ bindsym $mod+Shift+r restart
 # exit i3
 bindsym $mod+Shift+e exec "i3-nagbar -t warning -m 'Exit i3wm & X session?' -b 'Yes.' 'i3-msg exit'"
 
-set_from_resource $text-color			i3wm.cursorColor #f8f8f2
-set_from_resource $bg-color			i3wm.background #2d2d2d
-set_from_resource $inactive-text-color		i3wm.foreground #ff5555
-set_from_resource $inactive-bg-color		i3wm.background #2d2d2d
-set_from_resource $urgent-text-color		i3wm.color3 #2d2d2d
-set_from_resource $urgent-bg-color		i3wm.background #B26BB0
+set_from_resource $text-color			i3wm.cursorColor #e0f2ec
+set_from_resource $bg-color			i3wm.background #ba3d4d
+set_from_resource $inactive-text-color		i3wm.foreground #e0f2ec
+set_from_resource $inactive-bg-color		i3wm.background #ba3d4d
+set_from_resource $urgent-text-color		i3wm.color3 #6699cc
+set_from_resource $urgent-bg-color		i3wm.background #11292e
+set_from_resource $border-color			i3wm.color9 #ba3d4d
 
 # colours		border			background		text			indicator
-client.focused		$text-color		$bg-color		$text-color		#000000
-client.focused_inactive $inactive-bg-color	$inactive-bg-color	$inactive-text-color	#000000
+client.focused		$bg-color		$bg-color		$text-color		#000000
+client.focused_inactive $inavytive-bt-color	$inactive-bg-color	$inactive-text-color	#000000
 client.unfocused	$inactive-bg-color	$inactive-bg-color	$inactive-text-color	#000000
 client.urgent		$urgent-bg-color	$urgent-bg-color	$text-color		#000000
 
-bar {
-	position			top
-	status_command			i3blocks -c ~/.config/i3/i3blocks.conf
-	separator_symbol		"<"
-	colors {
-		separator		$text-color
-		background		$bg-color
-		statusline		$inactive-text-color
+exec_always --no-startup-id exec sh $HOME/.config/polybar/launch.sh
+#bar {
+#	position			top
+#	status_command			i3blocks -c ~/.config/i3/i3blocks.conf
+#	separator_symbol		"<"
+#	colors {
+#		separator		$text-color
+#		background		$bg-color
+#		statusline		$inactive-text-color
 #					border			background		text
-		focused_workspace	$text-color		$bg-color		$text-color
-		inactive_workspace	$inactive-bg-color	$inactive-bg-color	$inactive-text-color
-		urgent_workspace	$urgent-bg-color	$urgent-bg-color	$urgent-text-color
-		}
-}
+#		focused_workspace	$text-color		$bg-color		$text-color
+#		inactive_workspace	$inactive-bg-color	$inactive-bg-color	$inactive-text-color
+#		urgent_workspace	$urgent-bg-color	$urgent-bg-color	$urgent-text-color
+#		}
+#}
